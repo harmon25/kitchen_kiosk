@@ -1,4 +1,4 @@
 defmodule Kiosk.InventoryItem do
   @derive [ExAws.Dynamo.Encodable]
-  defstruct [:name, :inserted_at]
+  defstruct [:itemId, :name, :insertedOn]
 end

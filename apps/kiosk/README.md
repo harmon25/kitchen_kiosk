@@ -19,5 +19,8 @@ be found at [https://hexdocs.pm/kiosk](https://hexdocs.pm/kiosk).
 
 alias ExAws.Dynamo
 
-item = %Kiosk.InventoryItem{name: "Crazy Canuk", inserted_at: System.system_time(:second)}
+item = %Kiosk.InventoryItem{itemId: Ksuid.generate(), name: "Crazy Canuk", insertedOn: System.system_time(:second)}
 Dynamo.put_item("inventoryItem", item) |> ExAws.request!
+
+ExAws.Dynamo.scan("Users", expression_attribute_values: [api_key: "foo"])
+|> ExAws.request!

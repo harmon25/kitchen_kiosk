@@ -12,7 +12,11 @@ defmodule Kiosk do
       :world
 
   """
-  def hello do
-    :world
+  def table_props() do
+    [
+      %{name: "InventoryItem", primary_key: "id", fields: %{id: :string} },
+      %{name: "ShoppingList", primary_key: "id", fields: %{id: :string} },
+      %{name: "ShoppingListItem", primary_key: "id", fields: %{id: :string} },
+    ]
   end
 end
