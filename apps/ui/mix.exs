@@ -37,6 +37,7 @@ defmodule Ui.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:corsica, "~> 1.0"}]
+     {:corsica, "~> 1.0"},
+     {:kiosk, in_umbrella: true}]
   end
 end

@@ -21,9 +21,10 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
-config :goth,
-  json: "C:/Users/Doug/KitchenKiosk.json" |> File.read!
-
+config :ex_aws,
+  access_key_id: [{:system, "AWS_KITCHEN_KIOSK_ACCESS_KEY"}, :instance_role],
+  secret_access_key: [{:system, "AWS_KITCHEN_KIOSK_SECRET_KEY"}, :instance_role],
+  region: "ca-central-1"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

@@ -37,7 +37,8 @@ defmodule Kiosk.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:ksuid, "~> 0.1.2"},
-     {:diplomat, "~> 0.7.1"},
-     {:poison, "~> 3.1",  override: true}]
+     {:ex_aws, "~> 1.1"},
+     {:hackney, "~> 1.6.5"}
+    ]
   end
 end

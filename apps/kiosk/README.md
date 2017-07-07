@@ -17,3 +17,7 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/kiosk](https://hexdocs.pm/kiosk).
 
+alias ExAws.Dynamo
+
+item = %Kiosk.InventoryItem{name: "Crazy Canuk", inserted_at: System.system_time(:second)}
+Dynamo.put_item("inventoryItem", item) |> ExAws.request!
