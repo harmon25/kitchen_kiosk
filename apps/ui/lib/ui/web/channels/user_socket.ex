@@ -2,7 +2,7 @@ defmodule Ui.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Ui.Web.RoomChannel
+  channel "data:shopping_list", Ui.Web.DataChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
