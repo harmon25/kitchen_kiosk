@@ -1,13 +1,14 @@
-defmodule Kiosk.ShoppingList do
+defmodule Kiosk.Data.ShoppingList do
     use Ecto.Schema
     import Ecto.Changeset
 
     schema "shopping_list" do
         field :name, :string
         field :archived, :boolean
-        belongs_to :user, Kiosk.User
-        has_one :inventory_item, Kiosk.InventoryItem
-        belongs_to :shopping_list, Kiosk.ShoppingList
+        belongs_to :user, Kiosk.Data.User
+        has_one :inventory_item, Kiosk.Data.InventoryItem
+        belongs_to :shopping_list, Kiosk.Data.ShoppingList
+        timestamps()
     end
 
     def changeset(struct, params \\ %{}) do

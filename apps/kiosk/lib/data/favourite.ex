@@ -1,10 +1,11 @@
-defmodule Kiosk.Favourites do
+defmodule Kiosk.Data.Favourite do
     use Ecto.Schema
     import Ecto.Changeset
   
-  schema "favourites" do
-    belongs_to :inventory_item, Kiosk.InventoryItem
-    belongs_to :user, Kiosk.User
+  schema "favourite" do
+    belongs_to :inventory_item, Kiosk.Data.InventoryItem
+    belongs_to :user, Kiosk.Data.User
+    timestamps()
   end
 
    

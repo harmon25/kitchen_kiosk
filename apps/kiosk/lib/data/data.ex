@@ -1,18 +1,32 @@
 defmodule Kiosk.Data do
-  @moduledoc """
-  Documentation for Kiosk.
-  """
+  alias Kiosk.Repo
+  alias Kiosk.Data.{User, Inventory, Favourites, ShoppingList}
+  import Ecto.{Changeset, Query}
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Kiosk.hello
-      :world
-
+    Return all inventory items
   """
-  def hello do
-    :world
+  def inventory() do
+    
   end
+
+  @doc """
+    Return all user favourites items
+  """
+  def favourites(%User{}) do
+    
+  end
+
+  def favourites(user_id) do
+    
+  end
+
+  def shopping_lists() do
+    
+  end
+
+  def shopping_list() do
+    
+  end
+
 end
