@@ -12,6 +12,7 @@ defmodule Ui.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      start_permanent: Mix.env == :prod,
+     aliases: aliases(),
      deps: deps()]
   end
 
@@ -39,5 +40,11 @@ defmodule Ui.Mixfile do
      {:cowboy, "~> 1.0"},
      {:corsica, "~> 1.0"},
      {:kiosk, in_umbrella: true}]
+  end
+
+  defp aliases do
+    ["ecto.setup": ["ecto.create", "ecto.migrate", "run ../kiosk/priv/repo/seeds.exs"],
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

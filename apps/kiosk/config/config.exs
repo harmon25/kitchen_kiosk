@@ -21,10 +21,7 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
-config :ex_aws,
-  access_key_id: [{:system, "AWS_KITCHEN_KIOSK_ACCESS_KEY"}, :instance_role],
-  secret_access_key: [{:system, "AWS_KITCHEN_KIOSK_SECRET_KEY"}, :instance_role],
-  region: "ca-central-1"
+config :kiosk, :ecto_repos, [Kiosk.Repo]
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
@@ -32,4 +29,4 @@ config :ex_aws,
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
+import_config "#{Mix.env}.exs"

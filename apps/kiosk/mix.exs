@@ -11,6 +11,7 @@ defmodule Kiosk.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     aliases: aliases(),
      deps: deps()]
   end
 
@@ -36,9 +37,13 @@ defmodule Kiosk.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ksuid, "~> 0.1.2"},
-     {:ex_aws, "~> 1.1"},
-     {:hackney, "~> 1.6.5"}
-    ]
+    [{:exchalk, "~> 1.0.2"}, {:postgrex, ">= 0.0.0"}, {:ecto, "~> 2.1"}]
   end
+
+  defp aliases do
+    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+  end
+
 end

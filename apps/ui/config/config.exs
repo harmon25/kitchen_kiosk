@@ -9,6 +9,8 @@ use Mix.Config
 config :ui,
   namespace: Ui
 
+config :ui, :ecto_repos, [Kiosk.Repo]
+
 # Configures the endpoint
 config :ui, Ui.Web.Endpoint,
   url: [host: "localhost"],
@@ -26,7 +28,3 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
-config :ex_aws,
-  access_key_id: [{:system, "AWS_KITCHEN_KIOSK_ACCESS_KEY"}, :instance_role],
-  secret_access_key: [{:system, "AWS_KITCHEN_KIOSK_SECRET_KEY"}, :instance_role],
-  region: "ca-central-1"

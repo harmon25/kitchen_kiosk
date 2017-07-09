@@ -1,18 +1,15 @@
 defmodule Kiosk.Inventory do
-  @moduledoc """
-  Documentation for Inventory.
-  """
+    use Ecto.Schema
+    import Ecto.Changeset
 
-  @doc """
-  Hello world.
+    schema "inventory" do
+      belongs_to :inventory_item, Kiosk.InventoryItem
+      field :quantity, :integer
+    end
 
-  ## Examples
+    def changeset(struct, params \\ %{}) do
+      struct
+      |> cast(params, [:quantity, :inventory_item_id])
+    end
 
-      iex> Kiosk.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
