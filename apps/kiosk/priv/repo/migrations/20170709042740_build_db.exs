@@ -19,32 +19,28 @@ defmodule Kiosk.Repo.Migrations.BuildDb do
       timestamps()
     end
 
-    create table(:inventory_item) do
+    create table(:item) do
       add :name, :text
       add :description, :text
       add :expires, :boolean
+      add :quantity, :float
+      add :expiry_date, :naive_datetime
       add :size, :float
       add :size_unit, :text
       add :image, :text
+      add :upc, :text
       add :brand_id, references(:brand, on_delete: :nothing, type: :id)
       timestamps()
     end
 
     create table(:item_categories) do
-      add :inventory_item_id, references(:inventory_item, on_delete: :nothing, type: :id)
+      add :item_id, references(:item, on_delete: :nothing, type: :id)
       add :category_id, references(:category, on_delete: :nothing, type: :id)
     end
 
     create table(:brand_categories) do
       add :brand_id, references(:brand, on_delete: :nothing, type: :id)
       add :category_id, references(:category, on_delete: :nothing, type: :id)
-    end
-
-    create table(:inventory) do
-      add :inventory_item_id, references(:inventory_item, on_delete: :nothing, type: :id)
-      add :quantity, :integer
-      add :expiry, :naive_datetime
-      timestamps()
     end
 
     create table(:shopping_list) do
@@ -59,13 +55,13 @@ defmodule Kiosk.Repo.Migrations.BuildDb do
       add :name, :text
       add :purchased, :boolean
       add :quantity, :integer
-      add :inventory_item_id, references(:inventory_item, on_delete: :nothing, type: :id)
+      add :item_id, references(:item, on_delete: :nothing, type: :id)
       add :shopping_list_id, references(:shopping_list, on_delete: :nothing, type: :id)
       timestamps()
     end
 
     create table(:favourite) do
-      add :inventory_item_id, references(:inventory_item, on_delete: :nothing, type: :id)
+      add :item_id, references(:item, on_delete: :nothing, type: :id)
       add :user_id, references(:user, on_delete: :nothing, type: :id)
       timestamps()
     end

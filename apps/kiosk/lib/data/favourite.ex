@@ -3,7 +3,7 @@ defmodule Kiosk.Data.Favourite do
     import Ecto.Changeset
   
   schema "favourite" do
-    belongs_to :inventory_item, Kiosk.Data.InventoryItem
+    belongs_to :item, Kiosk.Data.Item
     belongs_to :user, Kiosk.Data.User
     timestamps()
   end
@@ -11,7 +11,7 @@ defmodule Kiosk.Data.Favourite do
    
     def changeset(struct, params \\ %{}) do
         struct
-        |> cast(params, [:inventory_item_id, :user_id])
+        |> cast(params, [:item_id, :user_id])
     end
 
 end

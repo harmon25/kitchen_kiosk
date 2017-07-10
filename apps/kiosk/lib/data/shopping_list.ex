@@ -1,19 +1,22 @@
 defmodule Kiosk.Data.ShoppingList do
     use Ecto.Schema
     import Ecto.Changeset
+    alias Kiosk.Repo
 
     schema "shopping_list" do
         field :name, :string
         field :archived, :boolean
-        belongs_to :user, Kiosk.Data.User
-        has_one :inventory_item, Kiosk.Data.InventoryItem
-        belongs_to :shopping_list, Kiosk.Data.ShoppingList
+        has_one :user, Kiosk.Data.User
+        has_many :items, Kiosk.Data.ShoppingListItem
         timestamps()
     end
 
     def changeset(struct, params \\ %{}) do
         struct
-        |> cast(params, [:name, :archived, :user_id, :inventory_item_id, :shopping_list_id])
+        |> Repo.preload([:user, :items])
+        |> cast(params, [:name, :archived, :user_id])
+        |> cast_assoc(:user)
+        |> cast_assoc(:items)
     end
 
 end

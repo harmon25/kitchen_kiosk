@@ -9,7 +9,7 @@ import Divider from "material-ui/Divider";
 import Subheader from "material-ui/Subheader";
 import { blue500, yellow600 } from "material-ui/styles/colors";
 import ActionInfo from "material-ui/svg-icons/action/info";
-
+import Paper from "material-ui/Paper";
 import {
   BottomNavigation,
   BottomNavigationItem
@@ -20,6 +20,11 @@ import { Tabs, Tab } from "material-ui/Tabs";
 import FileFolder from "material-ui/svg-icons/file/folder";
 import ActionAssignment from "material-ui/svg-icons/action/assignment";
 import EditorInsertChart from "material-ui/svg-icons/editor/insert-chart";
+import {
+  ApolloClient,
+  ApolloProvider,
+  createNetworkInterface
+} from "react-apollo";
 
 import "./App.css";
 
@@ -29,6 +34,14 @@ const listIcon = <FontIcon className="material-icons">menu</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
 
 injectTapEventPlugin();
+
+let gql_uri = "http://localhost:3000/api";
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: gql_uri
+  })
+});
 
 /**
  *  * let socket = new Socket("/socket")
@@ -47,12 +60,12 @@ const App = () =>
       title="KitchenKiosk"
       iconClassNameRight="muidocs-icon-navigation-expand-more"
     />
-    <Tabs>
+    <Tabs style={{ marginBottom: 10 }}>
       <Tab icon={listIcon} label="Inventory" />
       <Tab icon={listIcon} label="Shopping List" />
       <Tab icon={favoritesIcon} label="Favourites" />
     </Tabs>
-    <div style={{ margin: "auto", maxWidth: "900px" }}>
+    <Paper style={{ marginTop: 15, margin: "auto", maxWidth: "960px" }}>
       <List>
         <Subheader inset={true}>Folders</Subheader>
         <ListItem
@@ -94,7 +107,7 @@ const App = () =>
           secondaryText="Jan 10, 2014"
         />
       </List>
-    </div>
+    </Paper>
     <div id="footer">
       <div style={{ textAlign: "right", maxWidth: "900px", margin: "auto" }}>
         <span>KitchenKiosk </span>
@@ -105,9 +118,11 @@ const App = () =>
 class AppContainer extends Component {
   render() {
     return (
-      <MuiThemeProvider>
-        <App />
-      </MuiThemeProvider>
+      <ApolloProvider client={client}>
+        <MuiThemeProvider>
+          <App />
+        </MuiThemeProvider>
+      </ApolloProvider>
     );
   }
 }
