@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { List, ListItem } from "material-ui/List";
 
-const ShoppingList = () =>
+const Favourites = () =>
   <div>
-    <h2> shopping list </h2>
+    <h2> Favourites </h2>
   </div>;
 
-export default ShoppingList;
+export default Favourites;

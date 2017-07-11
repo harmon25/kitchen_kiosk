@@ -39,6 +39,15 @@ defmodule Ui.GQL.Objects do
     field :items, list_of(:shopping_list_item)
   end
 
+
+ @desc "An inventory item"
+ object :inventory do
+    field :id, :id
+    field :quantity, :float
+    field :expiry_date, :string
+  end
+
+
  @desc "An inventory item"
  object :item do
     field :id, :id
@@ -52,6 +61,7 @@ defmodule Ui.GQL.Objects do
     field :expiry_date, :string
     field :brand, :brand
     field :categories, list_of(:category)
+    field :inventory, :inventory
   end
 
 

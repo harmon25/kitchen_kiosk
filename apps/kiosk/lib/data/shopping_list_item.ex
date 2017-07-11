@@ -6,7 +6,7 @@ defmodule Kiosk.Data.ShoppingListItem do
         field :name, :string
         field :purchased, :boolean
         field :quantity, :integer
-        has_one :item, Kiosk.Data.Item
+        belongs_to :item, Kiosk.Data.Item
         belongs_to :shopping_list, Kiosk.Data.ShoppingList
         timestamps()
     end

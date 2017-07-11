@@ -19,17 +19,24 @@ defmodule Kiosk.Repo.Migrations.BuildDb do
       timestamps()
     end
 
+
     create table(:item) do
       add :name, :text
       add :description, :text
       add :expires, :boolean
-      add :quantity, :float
-      add :expiry_date, :naive_datetime
       add :size, :float
       add :size_unit, :text
       add :image, :text
       add :upc, :text
       add :brand_id, references(:brand, on_delete: :nothing, type: :id)
+      timestamps()
+    end
+
+    create table(:item_inventory) do
+      add :expiry_date, :naive_datetime
+      add :quantity, :float, default: 0.0
+      add :item_id, references(:item, on_delete: :nothing, type: :id)
+      
       timestamps()
     end
 
@@ -41,6 +48,11 @@ defmodule Kiosk.Repo.Migrations.BuildDb do
     create table(:brand_categories) do
       add :brand_id, references(:brand, on_delete: :nothing, type: :id)
       add :category_id, references(:category, on_delete: :nothing, type: :id)
+    end
+
+    create table(:brand_items) do
+      add :item_id, references(:item, on_delete: :nothing, type: :id)
+      add :brand_id, references(:brand, on_delete: :nothing, type: :id)
     end
 
     create table(:shopping_list) do
